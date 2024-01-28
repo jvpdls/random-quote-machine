@@ -1,6 +1,6 @@
 # Random Quote Machine
 
-This project features a one-click Random Quote generator, which consumes the [Quotable API](https://github.com/lukePeavey/quotable).
+This project features a one-click random quote generator, which consumes the [Quotable API](https://github.com/lukePeavey/quotable).
 
 ## Technologies
 
