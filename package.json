@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "João Santos",
+  "license": "MIT",
+  "description": "A simple random quote machine",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
