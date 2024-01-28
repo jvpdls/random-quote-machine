@@ -36,23 +36,17 @@ export default function QuoteBox() {
     ];
 
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    return randomColor;
+    return Promise.resolve(randomColor);
   }
 
   /**
    * Fetches a random quote from the quotable API
    */
   function fetchQuote() {
-    axios
+    return axios
       .get("https://api.quotable.io/random")
       .then((response) => {
-        setQuote(response.data.content);
-        setAuthor(response.data.author);
-        setEscapedQuote(
-          encodeURIComponent(
-            `${response.data.content} - ${response.data.author}`
-          )
-        );
+        return response.data;
       })
       .catch((error) => {
         console.log(error);
@@ -62,11 +56,17 @@ export default function QuoteBox() {
   /**
    * Sets the random color and fetches a new quote
    */
-  function getColorAndQuote() {
-    generateRandomColor()
-      .then((color) => {
-        setRandomColor(color);
-        fetchQuote();
+  function fetchQuoteAndColor() {
+    fetchQuote()
+      .then((data) => {
+        setQuote(data.content);
+        setAuthor(data.author);
+        setEscapedQuote(encodeURIComponent(data.content));
+      })
+      .then(() => {
+        generateRandomColor().then((color) => {
+          setRandomColor(color);
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +77,18 @@ export default function QuoteBox() {
    * Fetches a random quote and color on component mount
    */
   useEffect(() => {
-    getColorAndQuote();
+    generateRandomColor().then((color) => {
+      setRandomColor(color);
+    });
+    fetchQuote()
+      .then((data) => {
+        setQuote(data.content);
+        setAuthor(data.author);
+        setEscapedQuote(encodeURIComponent(data.content));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   /**
@@ -88,7 +99,10 @@ export default function QuoteBox() {
       id="container"
       className={`bg-${randomColor} h-screen flex justify-center items-center font-raleway`}
     >
-      <div id="quote-box" className="bg-white w-1/3 h-max p-6 rounded-md">
+      <div
+        id="quote-box"
+        className="bg-white w-5/6 md:w-full max-w-lg h-max p-6 rounded-md"
+      >
         <p
           id="text"
           className={`text-${randomColor} text-center text-2xl font-medium`}
@@ -111,7 +125,7 @@ export default function QuoteBox() {
           </a>
           <button
             id="new-quote"
-            onClick={() => getColorAndQuote()}
+            onClick={() => fetchQuoteAndColor()}
             className={`bg-${randomColor} text-white p-2 rounded-md`}
           >
             New quote
