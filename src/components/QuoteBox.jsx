@@ -36,17 +36,19 @@ export default function QuoteBox() {
     ];
 
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    return Promise.resolve(randomColor);
+    setRandomColor(randomColor);
   }
 
   /**
    * Fetches a random quote from the quotable API
    */
-  function fetchQuote() {
+  async function fetchQuote() {
     return axios
       .get("https://api.quotable.io/random")
       .then((response) => {
-        return response.data;
+        setQuote(response.data.content);
+        setAuthor(response.data.author);
+        setEscapedQuote(encodeURIComponent(data.content));
       })
       .catch((error) => {
         console.log(error);
@@ -58,15 +60,8 @@ export default function QuoteBox() {
    */
   function fetchQuoteAndColor() {
     fetchQuote()
-      .then((data) => {
-        setQuote(data.content);
-        setAuthor(data.author);
-        setEscapedQuote(encodeURIComponent(data.content));
-      })
       .then(() => {
-        generateRandomColor().then((color) => {
-          setRandomColor(color);
-        });
+        generateRandomColor();
       })
       .catch((error) => {
         console.log(error);
@@ -77,18 +72,8 @@ export default function QuoteBox() {
    * Fetches a random quote and color on component mount
    */
   useEffect(() => {
-    generateRandomColor().then((color) => {
-      setRandomColor(color);
-    });
-    fetchQuote()
-      .then((data) => {
-        setQuote(data.content);
-        setAuthor(data.author);
-        setEscapedQuote(encodeURIComponent(data.content));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    generateRandomColor();
+    fetchQuote();
   }, []);
 
   /**
