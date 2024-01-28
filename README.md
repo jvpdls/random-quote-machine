@@ -1,8 +1,19 @@
-# React + Vite
+# Random Quote Machine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project features a one-click Random Quote generator, which consumes the [Quotable API](https://github.com/lukePeavey/quotable).
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Tailwind CSS
+- React
+
+## Screeshots
+
+## Installation
+
+1. Clone this repository into your machine: `git clone ...`;
+2. Install its dependencies: `npm install`;
+3. Build it: `npm run build`;
+4. Run its build: `npx serve -s dist`
+
+## Contributions
