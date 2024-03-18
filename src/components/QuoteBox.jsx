@@ -48,7 +48,7 @@ export default function QuoteBox() {
       .then((response) => {
         setQuote(response.data.content);
         setAuthor(response.data.author);
-        setEscapedQuote(encodeURIComponent(data.content));
+        setEscapedQuote(encodeURIComponent(`${response.data.content} - ${response.data.author}`));
       })
       .catch((error) => {
         console.log(error);
@@ -105,6 +105,7 @@ export default function QuoteBox() {
             target="_blank"
             id="tweet-quote"
             className={`text-${randomColor}`}
+            aria-label="Tweet this quote!"
           >
             <FaSquareXTwitter size={35} />
           </a>
