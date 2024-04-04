@@ -2,6 +2,8 @@
 
 This project features a one-click random quote generator, which consumes the [Quotable API](https://github.com/lukePeavey/quotable).
 
+## Live preview
+See a live preview of this project [here](https://rqm.joaosantos.net.br/).
 ## Technologies
 
 - [Tailwind CSS](https://tailwindcss.com/)
