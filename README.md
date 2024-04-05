@@ -1,13 +1,15 @@
 # Random Quote Machine
 
-This project features a one-click random quote generator, which consumes the [Quotable API](https://github.com/lukePeavey/quotable).
+This project features a one-click random quote generator.
 
 ## Live preview
 See a live preview of this project [here](https://rqm.joaosantos.net.br/).
-## Technologies
+## Technologies & Features
 
 - [Tailwind CSS](https://tailwindcss.com/)
 - [React](https://react.dev/)
+- [Quotable API](https://github.com/lukePeavey/quotable)
+- Twitter/X sharing button
 
 ## Screenshots
 
