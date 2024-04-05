@@ -2,22 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { FaQuoteLeft, FaQuoteRight, FaSquareXTwitter } from "react-icons/fa6";
 
-/**
- * QuoteBox component
- *
- * @returns {JSX.Element} QuoteBox component
- */
 export default function QuoteBox() {
   const [quote, setQuote] = useState("Loading quote...");
   const [author, setAuthor] = useState("Loading author...");
   const [randomColor, setRandomColor] = useState("");
   const [escapedQuote, setEscapedQuote] = useState("#");
 
-  /**
-   * Generates a random color from a list of tailwind colors
-   *
-   * @returns {Promise<string>} Random color
-   */
+  // Generates a random color from a list of tailwind colors
   function generateRandomColor() {
     const colors = [
       "red-600",
@@ -39,25 +30,25 @@ export default function QuoteBox() {
     setRandomColor(randomColor);
   }
 
-  /**
-   * Fetches a random quote from the quotable API
-   */
+  // Fetches a random quote from the quotable API
   async function fetchQuote() {
     return axios
       .get("https://api.quotable.io/random")
       .then((response) => {
         setQuote(response.data.content);
         setAuthor(response.data.author);
-        setEscapedQuote(encodeURIComponent(`${response.data.content} - ${response.data.author}`));
+        setEscapedQuote(
+          encodeURIComponent(
+            `${response.data.content} - ${response.data.author}`
+          )
+        );
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  /**
-   * Sets the random color and fetches a new quote
-   */
+  // Sets the random color and fetches a new quote
   function fetchQuoteAndColor() {
     fetchQuote()
       .then(() => {
@@ -68,17 +59,12 @@ export default function QuoteBox() {
       });
   }
 
-  /**
-   * Fetches a random quote and color on component mount
-   */
+  // Fetches a random quote and color on component mount
   useEffect(() => {
     generateRandomColor();
     fetchQuote();
   }, []);
 
-  /**
-   * Renders the QuoteBox component
-   */
   return (
     <div
       id="container"
