@@ -3,7 +3,7 @@
 This project features a one-click random quote generator.
 
 ## Live preview
-See a live preview of this project [here](https://rqm.joaosantos.net.br/).
+See a live preview of this project [here](https://rqm-phi.vercel.app/).
 ## Technologies & Features
 
 - [Tailwind CSS](https://tailwindcss.com/)
